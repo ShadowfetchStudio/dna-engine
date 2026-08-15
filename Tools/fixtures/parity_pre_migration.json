@@ -1,0 +1,187 @@
+{
+  "compounds" : {
+    "alcohol" : {
+      "detail" : "Accelerated ethanol oxidation creating an early acetaldehyde signal, conferring strong natural protection against heavy drinking.",
+      "impact" : "advantageous",
+      "value" : "Rapid Ethanol Conversion (ADH1B*2)"
+    },
+    "apoe" : {
+      "detail" : "One ε4 allele. Carries higher sensitivity to dietary saturated fat, higher average ApoB, and increased lifetime cardiovascular and neurological risk. Highly responsive to zone-2 exercise, omega-3s, and optimal sleep.",
+      "impact" : "caution",
+      "value" : "ε3\/ε4 (Single ε4 Carrier)"
+    },
+    "autoimmune_hla" : {
+      "detail" : "Common HLA-B27 and PTPN22 risk tags not detected.",
+      "impact" : "typical",
+      "value" : "Low Autoimmune Risk Markers"
+    },
+    "bitter" : {
+      "detail" : "High sensitivity to glucosinolate bitterness in cruciferous vegetables and black coffee. Cook brassicas with healthy fats, salt, and lemon to neutralize bitterness.",
+      "impact" : "notable",
+      "value" : "Super-Taster Phenotype (PAV)"
+    },
+    "caffeine_sleep" : {
+      "detail" : "Slow CYP1A2 clearance (caffeine half-life ~8–10 hours). Caffeine strongly fragments slow-wave deep sleep and can trigger palpitations or anxiety. Keep intake minimal (<100mg) and strictly early morning.",
+      "impact" : "caution",
+      "value" : "High Caffeine Sensitivity & Sleep Disruption"
+    },
+    "connective_tissue" : {
+      "detail" : "Balanced tendon elasticity and joint mobility.",
+      "impact" : "typical",
+      "value" : "Typical Connective Tissue Architecture"
+    },
+    "cyp2c19_trait" : {
+      "detail" : "Impaired bioactivation of clopidogrel (Plavix) and slowed clearance of escitalopram and omeprazole.",
+      "impact" : "caution",
+      "value" : "Loss-of-Function Present (*2\/*3-like)"
+    },
+    "fatty_liver" : {
+      "detail" : "Impaired hepatic lipid droplet hydrolysis. Liver is highly sensitive to refined sugars, fructose, and alcohol. Prioritize dietary choline (eggs) and omega-3s.",
+      "impact" : "caution",
+      "value" : "High NAFLD & Liver Fat Vulnerability (PNPLA3 148M)"
+    },
+    "histamine_trait" : {
+      "detail" : "Standard DAO and HNMT enzyme kinetics.",
+      "impact" : "typical",
+      "value" : "Typical Histamine Clearance"
+    },
+    "iron" : {
+      "detail" : "No high-risk hemochromatosis variants detected.",
+      "impact" : "typical",
+      "value" : "Typical Iron Absorption Kinetics"
+    },
+    "lactase" : {
+      "detail" : "The -13910T variant keeps intestinal lactase active in adulthood, allowing efficient milk sugar digestion.",
+      "impact" : "advantageous",
+      "value" : "Lactase Persistent (Dairy Tolerant)"
+    },
+    "lipid_complex" : {
+      "detail" : "Standard baseline for circulating lipoproteins and hepatic uptake.",
+      "impact" : "typical",
+      "value" : "Typical Lipid Regulatory Architecture"
+    },
+    "longevity_trait" : {
+      "detail" : "Carries the major global centenarian longevity factor promoting enhanced autophagy, DNA repair, and stem cell maintenance.",
+      "impact" : "advantageous",
+      "value" : "Centenarian FOXO3 Longevity Allele Present"
+    },
+    "mthfr" : {
+      "detail" : "Significant drop in 5-MTHF production and heightened vulnerability to elevated homocysteine when dietary folate or riboflavin (B2) is low. Natural food folates (leafy greens, legumes) and riboflavin are primary lifestyle priorities.",
+      "impact" : "caution",
+      "value" : "C677T TT Homozygote (~70% reduction)"
+    },
+    "muscle_type" : {
+      "detail" : "Versatile muscle architecture supporting both strength and aerobic conditioning.",
+      "impact" : "typical",
+      "value" : "Hybrid Power \/ Endurance Profile (ACTN3 RX)"
+    },
+    "neuro_profile" : {
+      "detail" : "Equilibrated dopamine turnover, neuroplasticity, and baseline stress recovery.",
+      "impact" : "typical",
+      "value" : "Balanced Neurotransmitter Dynamics"
+    },
+    "omega3_fads" : {
+      "detail" : "Normal baseline conversion of plant essential fatty acids.",
+      "impact" : "typical",
+      "value" : "Standard Fatty Acid Desaturation"
+    },
+    "pigment" : {
+      "detail" : "Suppressed OCA2 expression in iris stroma. High predictability for blue, gray, or light green eyes. Paired with MC1R sun-sensitivity variant.",
+      "impact" : "typical",
+      "value" : "Blue \/ Light Eyes (HERC2 GG)"
+    },
+    "vit_a_conversion" : {
+      "detail" : "Moderately reduced plant carotenoid cleavage. Include dietary preformed vitamin A.",
+      "impact" : "notable",
+      "value" : "Intermediate Beta-Carotene Conversion (~30% reduction)"
+    },
+    "vit_d_axis" : {
+      "detail" : "Carries DBP or CYP2R1 variants associated with lower baseline circulating 25-OH Vitamin D. Regular sun exposure or D3+K2 supplementation (2,000–4,000 IU) is recommended.",
+      "impact" : "notable",
+      "value" : "Lower Circulating 25-OH D Tendency"
+    }
+  },
+  "pgxDrugs" : [
+    {
+      "id" : "5-Fluorouracil & Capecitabine-DPYD",
+      "impact" : "typical",
+      "phenotype" : "Normal (Extensive) Metabolizer"
+    },
+    {
+      "id" : "Abacavir-HLA-B*5701",
+      "impact" : "caution",
+      "phenotype" : "Poor Metabolizer"
+    },
+    {
+      "id" : "Azathioprine & 6-Mercaptopurine-TPMT",
+      "impact" : "typical",
+      "phenotype" : "Normal (Extensive) Metabolizer"
+    },
+    {
+      "id" : "Celecoxib & NSAIDs-CYP2C9",
+      "impact" : "typical",
+      "phenotype" : "Normal (Extensive) Metabolizer"
+    },
+    {
+      "id" : "Clopidogrel-CYP2C19",
+      "impact" : "caution",
+      "phenotype" : "Intermediate Metabolizer"
+    },
+    {
+      "id" : "Codeine & Tramadol-CYP2D6",
+      "impact" : "typical",
+      "phenotype" : "Indeterminate \/ Uncalled"
+    },
+    {
+      "id" : "Escitalopram & Citalopram-CYP2C19",
+      "impact" : "typical",
+      "phenotype" : "Intermediate Metabolizer"
+    },
+    {
+      "id" : "Irinotecan-UGT1A1",
+      "impact" : "typical",
+      "phenotype" : "Intermediate Metabolizer"
+    },
+    {
+      "id" : "Metoprolol-CYP2D6",
+      "impact" : "typical",
+      "phenotype" : "Indeterminate \/ Uncalled"
+    },
+    {
+      "id" : "Omeprazole & Pantoprazole-CYP2C19",
+      "impact" : "typical",
+      "phenotype" : "Intermediate Metabolizer"
+    },
+    {
+      "id" : "Simvastatin & Atorvastatin-SLCO1B1",
+      "impact" : "caution",
+      "phenotype" : "Intermediate Metabolizer"
+    },
+    {
+      "id" : "Tacrolimus-CYP3A5",
+      "impact" : "typical",
+      "phenotype" : "Normal (Extensive) Metabolizer"
+    },
+    {
+      "id" : "Tamoxifen-CYP2D6",
+      "impact" : "typical",
+      "phenotype" : "Indeterminate \/ Uncalled"
+    },
+    {
+      "id" : "Warfarin-CYP2C9 \/ VKORC1",
+      "impact" : "caution",
+      "phenotype" : "Intermediate Metabolizer"
+    }
+  ],
+  "pgxGenes" : {
+    "CYP2C9" : "Normal (Extensive) Metabolizer",
+    "CYP2C19" : "Intermediate Metabolizer",
+    "CYP2D6" : "Indeterminate \/ Uncalled",
+    "CYP3A5" : "Normal (Extensive) Metabolizer",
+    "DPYD" : "Normal (Extensive) Metabolizer",
+    "SLCO1B1" : "Intermediate Metabolizer",
+    "TPMT" : "Normal (Extensive) Metabolizer",
+    "UGT1A1" : "Intermediate Metabolizer",
+    "VKORC1" : "Intermediate Metabolizer"
+  }
+}

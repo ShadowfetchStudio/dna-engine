@@ -1,0 +1,10 @@
+build/
+.DS_Store
+Resources/icon-1024.png
+Resources/AppIcon.iconset/
+*.icns
+.idea/
+.vscode/
+__pycache__/
+*.py[cod]
+.dnaengine-build.*

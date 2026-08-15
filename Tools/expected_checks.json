@@ -1,0 +1,1250 @@
+{
+  "admixture" : {
+    "asj" : {
+      "band" : "none-detected",
+      "hiPct4" : 0.52900000000000003,
+      "llr4" : -12.5099,
+      "loPct4" : 0.14680000000000001,
+      "sharePct4" : 0.39079999999999998,
+      "total" : 375,
+      "used" : 321
+    },
+    "continental" : {
+      "AFR" : {
+        "hi" : 0.15670000000000001,
+        "lo" : 0.087499999999999994,
+        "share" : 0.1202
+      },
+      "AMR" : {
+        "hi" : 0.027099999999999999,
+        "lo" : 0.0167,
+        "share" : 0.0263
+      },
+      "EAS" : {
+        "hi" : 0.68379999999999996,
+        "lo" : 0.57899999999999996,
+        "share" : 0.626
+      },
+      "EUR" : {
+        "hi" : 0.22020000000000001,
+        "lo" : 0.13439999999999999,
+        "share" : 0.1726
+      },
+      "MID" : {
+        "hi" : 0.037600000000000001,
+        "lo" : 0.019099999999999999,
+        "share" : 0.029700000000000001
+      },
+      "SAS" : {
+        "hi" : 0.0292,
+        "lo" : 0.016400000000000001,
+        "share" : 0.0252
+      }
+    },
+    "insufficient" : false,
+    "markersTotal" : 2621,
+    "markersUsed" : 2222,
+    "mismatchDropped" : 0,
+    "palindromicDropped" : 398,
+    "tier2Applicable" : true,
+    "tier2Total" : 885,
+    "tier2Used" : 747,
+    "withinEuropean" : {
+      "ASJ" : {
+        "hi" : 0.0053,
+        "lo" : 0.0015,
+        "share" : 0.0038999999999999998
+      },
+      "FIN" : {
+        "hi" : 0.1167,
+        "lo" : 0.072599999999999998,
+        "share" : 0.092999999999999999
+      },
+      "IBS" : {
+        "hi" : 0.0011000000000000001,
+        "lo" : 0.00040000000000000002,
+        "share" : 0.0011000000000000001
+      },
+      "NWE" : {
+        "hi" : 0.082299999999999998,
+        "lo" : 0.0487,
+        "share" : 0.064500000000000002
+      },
+      "TSI" : {
+        "hi" : 0.013899999999999999,
+        "lo" : 0.0045999999999999999,
+        "share" : 0.0101
+      }
+    }
+  },
+  "ancestry" : {
+    "europeanShare4" : 0.0044000000000000003,
+    "top" : "middle_eastern",
+    "used" : 36
+  },
+  "buildDetected" : "GRCh37\/hg19",
+  "calibDebug" : {
+    "bmi" : {
+      "african" : {
+        "mean" : 3.0060000000000002,
+        "sd" : 1.4576412453000911
+      },
+      "american" : {
+        "mean" : 2.6319999999999997,
+        "sd" : 1.4015305918887393
+      },
+      "east_asian" : {
+        "mean" : 2.1960000000000002,
+        "sd" : 1.2695983616876638
+      },
+      "european" : {
+        "mean" : 2.4619999999999997,
+        "sd" : 1.4114042652620828
+      },
+      "middle_eastern" : {
+        "mean" : 2.4300000000000002,
+        "sd" : 1.4143712383953515
+      },
+      "oceanian" : {
+        "mean" : 2.0619999999999998,
+        "sd" : 1.3293690232587789
+      },
+      "south_asian" : {
+        "mean" : 2.4299999999999997,
+        "sd" : 1.4125374331323046
+      }
+    },
+    "bone" : {
+      "african" : {
+        "mean" : 1.6100000000000001,
+        "sd" : 1.0809024007744641
+      },
+      "american" : {
+        "mean" : 2.4779999999999998,
+        "sd" : 1.2421231822971506
+      },
+      "east_asian" : {
+        "mean" : 2.4939999999999998,
+        "sd" : 1.1293989551969668
+      },
+      "european" : {
+        "mean" : 2.6140000000000003,
+        "sd" : 1.3089469049583333
+      },
+      "middle_eastern" : {
+        "mean" : 2.46,
+        "sd" : 1.2686827814706085
+      },
+      "oceanian" : {
+        "mean" : 2.1800000000000002,
+        "sd" : 1.1524755962709146
+      },
+      "south_asian" : {
+        "mean" : 2.3780000000000001,
+        "sd" : 1.229128959873617
+      }
+    },
+    "cad" : {
+      "african" : {
+        "mean" : 3.4890000000000003,
+        "sd" : 1.5759376573963833
+      },
+      "american" : {
+        "mean" : 4.1269999999999998,
+        "sd" : 1.7754569834270837
+      },
+      "east_asian" : {
+        "mean" : 4.1055999999999999,
+        "sd" : 1.6265372790071555
+      },
+      "european" : {
+        "mean" : 4.3000000000000007,
+        "sd" : 1.7925880731501034
+      },
+      "middle_eastern" : {
+        "mean" : 4.1610000000000005,
+        "sd" : 1.749054458843406
+      },
+      "oceanian" : {
+        "mean" : 3.6369999999999996,
+        "sd" : 1.6357761154876909
+      },
+      "south_asian" : {
+        "mean" : 4.0680000000000005,
+        "sd" : 1.6899076897866345
+      }
+    },
+    "caffeine_sensitivity" : {
+      "african" : {
+        "mean" : 4.8340000000000005,
+        "sd" : 1.5320907283839296
+      },
+      "american" : {
+        "mean" : 3.996,
+        "sd" : 1.5186546677898829
+      },
+      "east_asian" : {
+        "mean" : 4.3099999999999996,
+        "sd" : 1.4821005364009556
+      },
+      "european" : {
+        "mean" : 4.0019999999999998,
+        "sd" : 1.5707927934644978
+      },
+      "middle_eastern" : {
+        "mean" : 4.1379999999999999,
+        "sd" : 1.57029360312013
+      },
+      "oceanian" : {
+        "mean" : 4.0540000000000003,
+        "sd" : 1.4858741534867614
+      },
+      "south_asian" : {
+        "mean" : 4.0339999999999998,
+        "sd" : 1.5040285901537909
+      }
+    },
+    "chronotype" : {
+      "african" : {
+        "mean" : 2.3039999999999998,
+        "sd" : 1.3985821391680933
+      },
+      "american" : {
+        "mean" : 2.286,
+        "sd" : 1.3888347633897995
+      },
+      "east_asian" : {
+        "mean" : 2.0760000000000001,
+        "sd" : 1.2719402501690087
+      },
+      "european" : {
+        "mean" : 2.1920000000000002,
+        "sd" : 1.3421296509652114
+      },
+      "middle_eastern" : {
+        "mean" : 2.3000000000000003,
+        "sd" : 1.3740829669273977
+      },
+      "oceanian" : {
+        "mean" : 2.2720000000000002,
+        "sd" : 1.3969681456640306
+      },
+      "south_asian" : {
+        "mean" : 2.4280000000000004,
+        "sd" : 1.3880316999261941
+      }
+    },
+    "cognitive_reserve" : {
+      "african" : {
+        "mean" : 5.7040000000000006,
+        "sd" : 1.2143936758728613
+      },
+      "american" : {
+        "mean" : 5.8860000000000001,
+        "sd" : 1.3000115384103328
+      },
+      "east_asian" : {
+        "mean" : 4.9139999999999997,
+        "sd" : 1.4460753783949161
+      },
+      "european" : {
+        "mean" : 6.0180000000000007,
+        "sd" : 1.3869960346013972
+      },
+      "middle_eastern" : {
+        "mean" : 6.2300000000000004,
+        "sd" : 1.2667083326480488
+      },
+      "oceanian" : {
+        "mean" : 5.5679999999999996,
+        "sd" : 1.248692115775542
+      },
+      "south_asian" : {
+        "mean" : 5.968,
+        "sd" : 1.3375918660039765
+      }
+    },
+    "histamine_load" : {
+      "african" : {
+        "mean" : 1.556,
+        "sd" : 1.2925911960090091
+      },
+      "american" : {
+        "mean" : 2.1600000000000006,
+        "sd" : 1.4532611602874415
+      },
+      "east_asian" : {
+        "mean" : 0.93200000000000016,
+        "sd" : 1.0471790677816282
+      },
+      "european" : {
+        "mean" : 2.3400000000000003,
+        "sd" : 1.4897650821522164
+      },
+      "middle_eastern" : {
+        "mean" : 2.1760000000000006,
+        "sd" : 1.4569118024094665
+      },
+      "oceanian" : {
+        "mean" : 1.3720000000000001,
+        "sd" : 1.2349736839301475
+      },
+      "south_asian" : {
+        "mean" : 1.976,
+        "sd" : 1.409147259870309
+      }
+    },
+    "homocysteine" : {
+      "african" : {
+        "mean" : 1.4259999999999999,
+        "sd" : 1.114338368719304
+      },
+      "american" : {
+        "mean" : 3.0720000000000001,
+        "sd" : 1.5534323287481819
+      },
+      "east_asian" : {
+        "mean" : 2.444,
+        "sd" : 1.4961417045186596
+      },
+      "european" : {
+        "mean" : 2.8360000000000003,
+        "sd" : 1.5122367539509149
+      },
+      "middle_eastern" : {
+        "mean" : 2.5739999999999998,
+        "sd" : 1.4551419174774671
+      },
+      "oceanian" : {
+        "mean" : 1.5799999999999998,
+        "sd" : 1.2103305333668155
+      },
+      "south_asian" : {
+        "mean" : 2.2560000000000002,
+        "sd" : 1.3208906086425174
+      }
+    },
+    "inflammation" : {
+      "african" : {
+        "mean" : 3.6920000000000002,
+        "sd" : 1.0762639081563592
+      },
+      "american" : {
+        "mean" : 3.1199999999999997,
+        "sd" : 1.2364465212858986
+      },
+      "east_asian" : {
+        "mean" : 3.1760000000000002,
+        "sd" : 0.72503793004228412
+      },
+      "european" : {
+        "mean" : 3.004,
+        "sd" : 1.4016818469253285
+      },
+      "middle_eastern" : {
+        "mean" : 2.9899999999999998,
+        "sd" : 1.3296428091784651
+      },
+      "oceanian" : {
+        "mean" : 3.2400000000000002,
+        "sd" : 1.0124722218411721
+      },
+      "south_asian" : {
+        "mean" : 3.1099999999999994,
+        "sd" : 1.1519331577830372
+      }
+    },
+    "iron_overload" : {
+      "african" : {
+        "mean" : 2.1200000000000001,
+        "sd" : 0.58923679450624944
+      },
+      "american" : {
+        "mean" : 1.8999999999999999,
+        "sd" : 0.86959760809238662
+      },
+      "east_asian" : {
+        "mean" : 1.534,
+        "sd" : 0.69046506066563584
+      },
+      "european" : {
+        "mean" : 2.0500000000000003,
+        "sd" : 1.0595046012170026
+      },
+      "middle_eastern" : {
+        "mean" : 1.9079999999999999,
+        "sd" : 0.88994831310587919
+      },
+      "oceanian" : {
+        "mean" : 1.8600000000000001,
+        "sd" : 0.71316197318701724
+      },
+      "south_asian" : {
+        "mean" : 1.7000000000000002,
+        "sd" : 0.8196340646898469
+      }
+    },
+    "longevity" : {
+      "african" : {
+        "mean" : 3.4950000000000006,
+        "sd" : 1.7442441056228339
+      },
+      "american" : {
+        "mean" : 3.2419999999999995,
+        "sd" : 1.7747782960133358
+      },
+      "east_asian" : {
+        "mean" : 3.121,
+        "sd" : 1.7546206142639496
+      },
+      "european" : {
+        "mean" : 3.2490000000000001,
+        "sd" : 1.7852863915909962
+      },
+      "middle_eastern" : {
+        "mean" : 3.254,
+        "sd" : 1.7810687802552712
+      },
+      "oceanian" : {
+        "mean" : 3.4829999999999997,
+        "sd" : 1.8116802974034907
+      },
+      "south_asian" : {
+        "mean" : 3.294,
+        "sd" : 1.7783874718407122
+      }
+    },
+    "power" : {
+      "african" : {
+        "mean" : 6.0259999999999998,
+        "sd" : 1.2006423280894274
+      },
+      "american" : {
+        "mean" : 5.4240000000000004,
+        "sd" : 1.5235117328068073
+      },
+      "east_asian" : {
+        "mean" : 4.7160000000000002,
+        "sd" : 1.5722404396274763
+      },
+      "european" : {
+        "mean" : 5.0140000000000011,
+        "sd" : 1.6076162477407347
+      },
+      "middle_eastern" : {
+        "mean" : 5.152000000000001,
+        "sd" : 1.5829794692288337
+      },
+      "oceanian" : {
+        "mean" : 5.5800000000000001,
+        "sd" : 1.4596040559000925
+      },
+      "south_asian" : {
+        "mean" : 5.0979999999999999,
+        "sd" : 1.5812899797317379
+      }
+    },
+    "t2d" : {
+      "african" : {
+        "mean" : 4.3120000000000003,
+        "sd" : 1.5293397268102336
+      },
+      "american" : {
+        "mean" : 5.056,
+        "sd" : 1.7078220047768446
+      },
+      "east_asian" : {
+        "mean" : 4.476,
+        "sd" : 1.42115727489958
+      },
+      "european" : {
+        "mean" : 5.1160000000000005,
+        "sd" : 1.7664982309642996
+      },
+      "middle_eastern" : {
+        "mean" : 5.25,
+        "sd" : 1.7838996608553968
+      },
+      "oceanian" : {
+        "mean" : 3.8540000000000001,
+        "sd" : 1.447298863400369
+      },
+      "south_asian" : {
+        "mean" : 5.2760000000000007,
+        "sd" : 1.7734238072158612
+      }
+    },
+    "venous_thrombosis" : {
+      "african" : {
+        "mean" : 1.1576,
+        "sd" : 0.8551268443921054
+      },
+      "american" : {
+        "mean" : 1.2296,
+        "sd" : 0.92924933144985367
+      },
+      "east_asian" : {
+        "mean" : 1.2911999999999999,
+        "sd" : 0.87742970088776917
+      },
+      "european" : {
+        "mean" : 1.2784,
+        "sd" : 0.99714729102575417
+      },
+      "middle_eastern" : {
+        "mean" : 1.3480000000000001,
+        "sd" : 0.99531301609091793
+      },
+      "oceanian" : {
+        "mean" : 1.3744000000000001,
+        "sd" : 0.89614034615120419
+      },
+      "south_asian" : {
+        "mean" : 1.3151999999999999,
+        "sd" : 0.91826340447607957
+      }
+    },
+    "vo2max" : {
+      "african" : {
+        "mean" : 6.3680000000000003,
+        "sd" : 1.3500622207883604
+      },
+      "american" : {
+        "mean" : 5.7100000000000009,
+        "sd" : 1.6227994330785303
+      },
+      "east_asian" : {
+        "mean" : 5.9580000000000002,
+        "sd" : 1.6421686880463895
+      },
+      "european" : {
+        "mean" : 5.5999999999999996,
+        "sd" : 1.6687468352029915
+      },
+      "middle_eastern" : {
+        "mean" : 5.7100000000000009,
+        "sd" : 1.6537127924763717
+      },
+      "oceanian" : {
+        "mean" : 6,
+        "sd" : 1.5655031140179825
+      },
+      "south_asian" : {
+        "mean" : 5.7919999999999998,
+        "sd" : 1.6542696273582489
+      }
+    }
+  },
+  "compounds" : {
+    "alcohol" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "alcohol_flush" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "apoe" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "autoimmune_hla" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "bitter" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "caffeine_sleep" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "celiac_dq" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "connective_tissue" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "cyp2c19_trait" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "eye_color_v2" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "fatty_liver" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "fut2_secretor" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "gilbert_ugt1a1" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "hfe_compound" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "histamine_trait" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "iron" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "lactase" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "lactase_mcm6" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "lipid_complex" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "longevity_trait" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "mc1r_load" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "mthfr" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "muscle_type" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "neuro_profile" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "omega3_fads" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "pigment" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "tas2r38" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "vit_a_conversion" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "vit_d_axis" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    },
+    "warfarin_triad" : {
+      "impact" : "typical",
+      "value" : "Research rule coverage only"
+    }
+  },
+  "coverage" : {
+    "matched" : 350,
+    "missing" : 3,
+    "noCall" : 1,
+    "strandAmbiguous" : 49
+  },
+  "headlines" : {
+    "compoundFindings" : 0,
+    "emptyCaveats" : 0,
+    "filterRailProbe" : 189,
+    "tier1" : 3,
+    "tier1Ids" : [
+      "score-cad",
+      "score-caffeine_sensitivity",
+      "score-homocysteine"
+    ],
+    "tier2" : 0,
+    "tier3" : 1
+  },
+  "honesty" : {
+    "computedCount" : 10,
+    "euroBiasBannerFires" : true,
+    "missingMarkerCount" : 3,
+    "staticCount" : 17,
+    "strandAmbiguousMarkerCount" : 49,
+    "underCoveredPanels" : [
+      "bmi",
+      "t2d",
+      "venous_thrombosis"
+    ]
+  },
+  "noCallClusterFlagged" : true,
+  "palindromicMatched" : 47,
+  "panels" : {
+    "bmi" : {
+      "category" : "Insufficient chip coverage",
+      "insufficient" : true,
+      "percentile" : null,
+      "referencePopulation" : "middle_eastern",
+      "total" : 4,
+      "used" : 2
+    },
+    "bone" : {
+      "category" : "Typical Population Baseline",
+      "insufficient" : false,
+      "percentile" : 54,
+      "percentileByPopulation" : {
+        "african" : 82,
+        "american" : 53,
+        "east_asian" : 53,
+        "european" : 49,
+        "middle_eastern" : 54,
+        "oceanian" : 64,
+        "south_asian" : 57
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 4,
+      "used" : 4
+    },
+    "cad" : {
+      "category" : "Elevated Tendency",
+      "insufficient" : false,
+      "percentile" : 75,
+      "percentileByPopulation" : {
+        "african" : 80,
+        "american" : 73,
+        "east_asian" : 79,
+        "european" : 72,
+        "middle_eastern" : 75,
+        "oceanian" : 81,
+        "south_asian" : 78
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 8,
+      "used" : 7
+    },
+    "caffeine_sensitivity" : {
+      "category" : "Elevated Tendency",
+      "insufficient" : false,
+      "percentile" : 96,
+      "percentileByPopulation" : {
+        "african" : 92,
+        "american" : 97,
+        "east_asian" : 96,
+        "european" : 97,
+        "middle_eastern" : 96,
+        "oceanian" : 97,
+        "south_asian" : 97
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 5,
+      "used" : 5
+    },
+    "chronotype" : {
+      "category" : "Lower Than Average Tendency",
+      "insufficient" : false,
+      "percentile" : 22,
+      "percentileByPopulation" : {
+        "african" : 15,
+        "american" : 20,
+        "east_asian" : 31,
+        "european" : 23,
+        "middle_eastern" : 22,
+        "oceanian" : 19,
+        "south_asian" : 22
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 4,
+      "used" : 3
+    },
+    "cognitive_reserve" : {
+      "category" : "Typical Population Baseline",
+      "insufficient" : false,
+      "percentile" : 33,
+      "percentileByPopulation" : {
+        "african" : 49,
+        "american" : 44,
+        "east_asian" : 70,
+        "european" : 40,
+        "middle_eastern" : 33,
+        "oceanian" : 54,
+        "south_asian" : 42
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 3,
+      "used" : 3
+    },
+    "histamine_load" : {
+      "category" : "Lower Than Average Tendency",
+      "insufficient" : false,
+      "percentile" : 10,
+      "percentileByPopulation" : {
+        "african" : 16,
+        "american" : 10,
+        "east_asian" : 23,
+        "european" : 9,
+        "middle_eastern" : 10,
+        "oceanian" : 17,
+        "south_asian" : 12
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 4,
+      "used" : 3
+    },
+    "homocysteine" : {
+      "category" : "Elevated Tendency",
+      "insufficient" : false,
+      "percentile" : 91,
+      "percentileByPopulation" : {
+        "african" : 99,
+        "american" : 83,
+        "east_asian" : 92,
+        "european" : 87,
+        "middle_eastern" : 91,
+        "oceanian" : 99,
+        "south_asian" : 96
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 4,
+      "used" : 4
+    },
+    "inflammation" : {
+      "category" : "Typical Population Baseline",
+      "insufficient" : false,
+      "percentile" : 38,
+      "percentileByPopulation" : {
+        "african" : 40,
+        "american" : 44,
+        "east_asian" : 75,
+        "european" : 31,
+        "middle_eastern" : 38,
+        "oceanian" : 58,
+        "south_asian" : 51
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 3,
+      "used" : 2
+    },
+    "iron_overload" : {
+      "category" : "Typical Population Baseline",
+      "insufficient" : false,
+      "percentile" : 31,
+      "percentileByPopulation" : {
+        "african" : 7,
+        "american" : 29,
+        "east_asian" : 39,
+        "european" : 30,
+        "middle_eastern" : 31,
+        "oceanian" : 23,
+        "south_asian" : 37
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 4,
+      "used" : 3
+    },
+    "longevity" : {
+      "category" : "Typical Population Baseline",
+      "insufficient" : false,
+      "percentile" : 70,
+      "percentileByPopulation" : {
+        "african" : 65,
+        "american" : 70,
+        "east_asian" : 73,
+        "european" : 70,
+        "middle_eastern" : 70,
+        "oceanian" : 65,
+        "south_asian" : 69
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 5,
+      "used" : 5
+    },
+    "power" : {
+      "category" : "Typical Population Baseline",
+      "insufficient" : false,
+      "percentile" : 43,
+      "percentileByPopulation" : {
+        "african" : 17,
+        "american" : 36,
+        "east_asian" : 54,
+        "european" : 47,
+        "middle_eastern" : 43,
+        "oceanian" : 32,
+        "south_asian" : 45
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 3,
+      "used" : 3
+    },
+    "t2d" : {
+      "category" : "Insufficient chip coverage",
+      "insufficient" : true,
+      "percentile" : null,
+      "referencePopulation" : "middle_eastern",
+      "total" : 7,
+      "used" : 3
+    },
+    "venous_thrombosis" : {
+      "category" : "Insufficient chip coverage",
+      "insufficient" : true,
+      "percentile" : null,
+      "referencePopulation" : "middle_eastern",
+      "total" : 4,
+      "used" : 2
+    },
+    "vo2max" : {
+      "category" : "Typical Population Baseline",
+      "insufficient" : false,
+      "percentile" : 37,
+      "percentileByPopulation" : {
+        "african" : 19,
+        "american" : 37,
+        "east_asian" : 32,
+        "european" : 40,
+        "middle_eastern" : 37,
+        "oceanian" : 30,
+        "south_asian" : 36
+      },
+      "referencePopulation" : "middle_eastern",
+      "total" : 5,
+      "used" : 5
+    }
+  },
+  "pgxObservations" : {
+    "ABCG2" : {
+      "loci" : [
+        {
+          "genotype" : "G\/T",
+          "rsid" : "rs2231142",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 1,
+      "total" : 1,
+      "unresolved" : 0
+    },
+    "CYP2C9" : {
+      "loci" : [
+        {
+          "genotype" : "C\/C",
+          "rsid" : "rs1799853",
+          "status" : "Observed"
+        },
+        {
+          "genotype" : "A\/A",
+          "rsid" : "rs1057910",
+          "status" : "Observed"
+        },
+        {
+          "genotype" : "C\/C",
+          "rsid" : "rs28371686",
+          "status" : "Strand unresolved"
+        },
+        {
+          "genotype" : "G\/G",
+          "rsid" : "rs7900194",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 3,
+      "total" : 4,
+      "unresolved" : 1
+    },
+    "CYP2C19" : {
+      "loci" : [
+        {
+          "genotype" : "A\/G",
+          "rsid" : "rs4244285",
+          "status" : "Observed"
+        },
+        {
+          "genotype" : "G\/G",
+          "rsid" : "rs4986893",
+          "status" : "Observed"
+        },
+        {
+          "genotype" : "C\/C",
+          "rsid" : "rs12248560",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 3,
+      "total" : 3,
+      "unresolved" : 0
+    },
+    "CYP2D6" : {
+      "loci" : [
+        {
+          "genotype" : "no-call",
+          "rsid" : "rs3892097",
+          "status" : "No-call"
+        },
+        {
+          "genotype" : "C\/C",
+          "rsid" : "rs1065852",
+          "status" : "Observed"
+        },
+        {
+          "genotype" : "C\/C",
+          "rsid" : "rs28371725",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 2,
+      "total" : 3,
+      "unresolved" : 1
+    },
+    "CYP3A4" : {
+      "loci" : [
+        {
+          "genotype" : "C\/C",
+          "rsid" : "rs35599367",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 1,
+      "total" : 1,
+      "unresolved" : 0
+    },
+    "CYP3A5" : {
+      "loci" : [
+        {
+          "genotype" : "G\/G",
+          "rsid" : "rs776746",
+          "status" : "Observed"
+        },
+        {
+          "genotype" : "C\/C",
+          "rsid" : "rs10264272",
+          "status" : "Observed"
+        },
+        {
+          "genotype" : "T\/T",
+          "rsid" : "rs41303343",
+          "status" : "Strand unresolved"
+        }
+      ],
+      "observed" : 2,
+      "total" : 3,
+      "unresolved" : 1
+    },
+    "CYP4F2" : {
+      "loci" : [
+        {
+          "genotype" : "C\/T",
+          "rsid" : "rs2108622",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 1,
+      "total" : 1,
+      "unresolved" : 0
+    },
+    "DPYD" : {
+      "loci" : [
+        {
+          "genotype" : "C\/C",
+          "rsid" : "rs3918290",
+          "status" : "Observed"
+        },
+        {
+          "genotype" : "A\/A",
+          "rsid" : "rs55886062",
+          "status" : "Observed"
+        },
+        {
+          "genotype" : "T\/T",
+          "rsid" : "rs67376798",
+          "status" : "Strand unresolved"
+        },
+        {
+          "genotype" : "G\/G",
+          "rsid" : "rs75017182",
+          "status" : "Strand unresolved"
+        }
+      ],
+      "observed" : 2,
+      "total" : 4,
+      "unresolved" : 2
+    },
+    "HLA-B*5701" : {
+      "loci" : [
+        {
+          "genotype" : "T\/T",
+          "rsid" : "rs2395029",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 1,
+      "total" : 1,
+      "unresolved" : 0
+    },
+    "NUDT15" : {
+      "loci" : [
+        {
+          "genotype" : "C\/T",
+          "rsid" : "rs116855232",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 1,
+      "total" : 1,
+      "unresolved" : 0
+    },
+    "SLCO1B1" : {
+      "loci" : [
+        {
+          "genotype" : "C\/T",
+          "rsid" : "rs4149056",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 1,
+      "total" : 1,
+      "unresolved" : 0
+    },
+    "TPMT" : {
+      "loci" : [
+        {
+          "genotype" : "C\/C",
+          "rsid" : "rs1800460",
+          "status" : "Observed"
+        },
+        {
+          "genotype" : "T\/T",
+          "rsid" : "rs1142345",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 2,
+      "total" : 2,
+      "unresolved" : 0
+    },
+    "UGT1A1" : {
+      "loci" : [
+        {
+          "genotype" : "C\/T",
+          "rsid" : "rs887829",
+          "status" : "Observed"
+        },
+        {
+          "genotype" : "G\/G",
+          "rsid" : "rs4148323",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 2,
+      "total" : 2,
+      "unresolved" : 0
+    },
+    "VKORC1" : {
+      "loci" : [
+        {
+          "genotype" : "A\/G",
+          "rsid" : "rs9923231",
+          "status" : "Observed"
+        }
+      ],
+      "observed" : 1,
+      "total" : 1,
+      "unresolved" : 0
+    }
+  },
+  "qc" : {
+    "build" : "pass",
+    "callRate" : "pass",
+    "chip" : "pass",
+    "clustering" : "warn",
+    "het" : "pass",
+    "sex" : "pass",
+    "strand" : "pass"
+  },
+  "reportChecks" : {
+    "allSingleMarkerOutcomesWithheld" : true,
+    "ancestryAdmixturePresent" : true,
+    "ancestryDisclosurePresent" : true,
+    "ancestryNotPassportPresent" : true,
+    "citationAppendixCount" : 497,
+    "citationHeadingPresent" : true,
+    "coverageBucketsExplicit" : true,
+    "cyp2c19CompleteDefiningLoci" : true,
+    "demoActivityClaimsWithheld" : true,
+    "demoActivityMarkersRetained" : true,
+    "demoActivityReportReceiptsOnly" : true,
+    "limitsHeadingPresent" : true,
+    "markerDetailsNonDirective" : true,
+    "pgxNoAlerts" : true,
+    "pgxNoPhenotypeCalls" : true,
+    "pgxResearchBannerPresent" : true
+  },
+  "roh" : {
+    "fROH" : 0.0023999999999999998,
+    "interpretation" : "F_ROH below 0.01 — consistent with a typical outbred background. At least one run exceeds 16 Mb, the length class associated with recent parental relatedness — founder-population background can produce similar patterns.",
+    "longCount" : 1,
+    "longestMb" : 19.899999999999999,
+    "plantedDetected" : true
+  },
+  "sex" : "Likely XX (Female)",
+  "strandAmbiguous" : [
+    "rs1042522",
+    "rs1042714",
+    "rs1049434",
+    "rs1049793",
+    "rs10830962",
+    "rs10830963",
+    "rs11803731",
+    "rs11887534",
+    "rs12325817",
+    "rs12696304",
+    "rs12934922",
+    "rs1333049",
+    "rs16891982",
+    "rs174575",
+    "rs17580",
+    "rs1799945",
+    "rs1800206",
+    "rs1800546",
+    "rs1800795",
+    "rs1801198",
+    "rs1801282",
+    "rs1805009",
+    "rs2010963",
+    "rs2066845",
+    "rs2104772",
+    "rs228697",
+    "rs28371686",
+    "rs2954029",
+    "rs328",
+    "rs35742686",
+    "rs41303343",
+    "rs41423247",
+    "rs4253778",
+    "rs4606",
+    "rs4818",
+    "rs5030655",
+    "rs5128",
+    "rs6013897",
+    "rs6295",
+    "rs67376798",
+    "rs689",
+    "rs713598",
+    "rs738409",
+    "rs75017182",
+    "rs7754840",
+    "rs7944584",
+    "rs854560",
+    "rs964184",
+    "rs9939609"
+  ],
+  "strandAmbiguousCount" : 49
+}
