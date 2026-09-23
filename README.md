@@ -240,7 +240,7 @@ Please open an issue to discuss substantial changes first. See `ARCHITECTURE.md`
 
 ## License
 
-_Add a `LICENSE` file before first publication._ The maintainers recommend **Apache-2.0** (permissive reuse + explicit patent and trademark clauses). Whatever license is chosen, the "AS IS, without warranty" clause, together with the research-only banner at the top of this README, governs use. **DNA Engine is provided for research and educational purposes only and is not medical advice.**
+**Apache-2.0** — see [LICENSE](LICENSE) and [NOTICE](NOTICE). The license's "AS IS, without warranty" clause, together with the research-only banner at the top of this README, governs use. **DNA Engine is provided for research and educational purposes only and is not medical advice.**
 
 ---
 
