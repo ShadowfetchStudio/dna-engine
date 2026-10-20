@@ -1,0 +1,393 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# Build DNA Engine.app in Release (via ./build.sh), wrap it in a .dmg, and
+# attach the image plus a SHA-256 checksum to a GitHub Release.
+#
+# Triggers:
+#   - Push of a version tag: v1.0.0 or v1.0
+#   - workflow_dispatch (optional version / build_number inputs)
+#
+# This workflow packages the existing offline app. It does not add network
+# code, telemetry, or an auto-updater to DNA Engine.
+#
+# ---------------------------------------------------------------------------
+# Repository secrets (Settings → Secrets and variables → Actions)
+# ---------------------------------------------------------------------------
+# Signing (Developer ID Application). When BOTH are set, the app and DMG are
+# signed. When either is missing, the job still publishes an UNSIGNED DMG
+# and labels the release notes accordingly.
+#
+#   MACOS_CERTIFICATE_P12_BASE64
+#       PKCS#12 (.p12) export of "Developer ID Application: …", base64-encoded.
+#       Include the private key and the Developer ID intermediate if possible:
+#         base64 -i DeveloperID.p12 | pbcopy
+#
+#   MACOS_CERTIFICATE_PASSWORD
+#       Password for that .p12.
+#
+#   MACOS_CERTIFICATE_IDENTITY   (optional)
+#       Exact codesign identity, e.g.
+#       "Developer ID Application: Shadowfetch Studio (TEAMID)".
+#       If unset, build.sh selects the first Developer ID Application identity.
+#
+# Notarization + staple. Used only when signing secrets are also present.
+# Provide EITHER the App Store Connect API key trio OR the Apple ID trio.
+# API key is preferred. If neither set is complete, the DMG is still attached
+# but the notes say it is not notarized.
+#
+#   App Store Connect API key (preferred):
+#     APP_STORE_CONNECT_API_KEY_P8_BASE64
+#         AuthKey_<KEYID>.p8, base64-encoded (raw PEM starting with
+#         -----BEGIN is also accepted).
+#     APP_STORE_CONNECT_API_KEY_ID
+#         Key ID from App Store Connect → Users and Access → Integrations.
+#     APP_STORE_CONNECT_ISSUER_ID
+#         Issuer UUID from the same page.
+#
+#   Apple ID + app-specific password (fallback):
+#     APPLE_ID
+#         Apple ID email that belongs to the Developer team.
+#     APPLE_TEAM_ID
+#         10-character Team ID (Membership details).
+#     APPLE_APP_SPECIFIC_PASSWORD
+#         App-specific password from https://appleid.apple.com (not the
+#         account password).
+#
+# This job never echoes secret values.
+name: Release
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version without a v prefix (example: 1.0.0). Defaults to the VERSION file."
+        required: false
+        type: string
+      build_number:
+        description: "CFBundleVersion. Defaults to the BUILD_NUMBER file."
+        required: false
+        type: string
+
+# Do not cancel an in-flight notarization if someone re-runs the workflow.
+concurrency:
+  group: release-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build DMG and publish GitHub Release
+    runs-on: macos-15
+    timeout-minutes: 120
+
+    env:
+      # Populated in "Resolve version" / "Detect signing secrets".
+      RELEASE_VERSION: ""
+      RELEASE_TAG: ""
+      RELEASE_BUILD_NUMBER: ""
+      SIGNING_AVAILABLE: "false"
+      NOTARY_AVAILABLE: "false"
+      NOTARY_METHOD: "none"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          set -euo pipefail
+          if [ -d /Applications/Xcode.app ]; then
+            sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          fi
+          xcodebuild -version
+          xcrun --sdk macosx --show-sdk-path
+          swift --version
+          python3 --version
+
+      - name: Resolve version
+        id: version
+        env:
+          INPUT_VERSION: ${{ github.event.inputs.version }}
+          INPUT_BUILD_NUMBER: ${{ github.event.inputs.build_number }}
+        run: |
+          set -euo pipefail
+          file_version="$(/usr/bin/tr -d '[:space:]' < VERSION)"
+          file_build="$(/usr/bin/tr -d '[:space:]' < BUILD_NUMBER)"
+
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            raw="${GITHUB_REF_NAME}"
+          elif [ -n "${INPUT_VERSION}" ]; then
+            raw="${INPUT_VERSION}"
+          else
+            raw="${file_version}"
+          fi
+          raw="${raw#v}"
+
+          if ! [[ "$raw" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+            echo "::error::VERSION must be 2 or 3 dot-separated integers (got: ${raw})"
+            exit 1
+          fi
+
+          if [ -n "${INPUT_BUILD_NUMBER}" ]; then
+            build="${INPUT_BUILD_NUMBER}"
+          else
+            build="${file_build}"
+          fi
+          if ! [[ "$build" =~ ^[1-9][0-9]*$ ]]; then
+            echo "::error::BUILD_NUMBER must be a positive integer (got: ${build})"
+            exit 1
+          fi
+
+          tag="v${raw}"
+          if [ "$raw" != "$file_version" ]; then
+            echo "::warning::Tag/input version ${raw} differs from VERSION file ${file_version}. The app bundle will be stamped ${raw}."
+          fi
+
+          {
+            echo "version=${raw}"
+            echo "tag=${tag}"
+            echo "build=${build}"
+          } >> "$GITHUB_OUTPUT"
+          {
+            echo "RELEASE_VERSION=${raw}"
+            echo "RELEASE_TAG=${tag}"
+            echo "RELEASE_BUILD_NUMBER=${build}"
+          } >> "$GITHUB_ENV"
+          echo "Resolved release ${tag} (build ${build})"
+
+      - name: Detect signing and notarization secrets
+        id: creds
+        env:
+          MACOS_CERTIFICATE_P12_BASE64: ${{ secrets.MACOS_CERTIFICATE_P12_BASE64 }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+          APP_STORE_CONNECT_API_KEY_P8_BASE64: ${{ secrets.APP_STORE_CONNECT_API_KEY_P8_BASE64 }}
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+        run: |
+          set -euo pipefail
+          signing=false
+          notary=false
+          method=none
+
+          if [ -n "${MACOS_CERTIFICATE_P12_BASE64}" ] && [ -n "${MACOS_CERTIFICATE_PASSWORD}" ]; then
+            signing=true
+          else
+            echo "Signing secrets are not both set; producing an unsigned (ad-hoc) DMG."
+          fi
+
+          if [ "$signing" = true ]; then
+            if [ -n "${APP_STORE_CONNECT_API_KEY_P8_BASE64}" ] && [ -n "${APP_STORE_CONNECT_API_KEY_ID}" ] && [ -n "${APP_STORE_CONNECT_ISSUER_ID}" ]; then
+              notary=true
+              method=api-key
+            elif [ -n "${APPLE_ID}" ] && [ -n "${APPLE_TEAM_ID}" ] && [ -n "${APPLE_APP_SPECIFIC_PASSWORD}" ]; then
+              notary=true
+              method=apple-id
+            else
+              echo "Notarization secrets are incomplete; the DMG will be signed (if a cert is present) but not notarized."
+            fi
+          fi
+
+          {
+            echo "signing=${signing}"
+            echo "notary=${notary}"
+            echo "method=${method}"
+          } >> "$GITHUB_OUTPUT"
+          {
+            echo "SIGNING_AVAILABLE=${signing}"
+            echo "NOTARY_AVAILABLE=${notary}"
+            echo "NOTARY_METHOD=${method}"
+          } >> "$GITHUB_ENV"
+
+      - name: Import Developer ID certificate
+        if: steps.creds.outputs.signing == 'true'
+        env:
+          MACOS_CERTIFICATE_P12_BASE64: ${{ secrets.MACOS_CERTIFICATE_P12_BASE64 }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+        run: |
+          set -euo pipefail
+          CERT_PATH="${RUNNER_TEMP}/DeveloperID.p12"
+          KEYCHAIN_PATH="${RUNNER_TEMP}/dnaengine-signing.keychain-db"
+          KEYCHAIN_PASSWORD="$(/usr/bin/openssl rand -base64 32)"
+          printf '%s' "${MACOS_CERTIFICATE_P12_BASE64}" | /usr/bin/base64 --decode > "${CERT_PATH}"
+
+          /usr/bin/security create-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
+          /usr/bin/security set-keychain-settings -lut 21600 "${KEYCHAIN_PATH}"
+          /usr/bin/security unlock-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
+          /usr/bin/security import "${CERT_PATH}" \
+            -k "${KEYCHAIN_PATH}" \
+            -P "${MACOS_CERTIFICATE_PASSWORD}" \
+            -T /usr/bin/codesign \
+            -T /usr/bin/security \
+            -T /usr/bin/productbuild
+          /usr/bin/security list-keychain -d user -s "${KEYCHAIN_PATH}" login.keychain
+          /usr/bin/security default-keychain -s "${KEYCHAIN_PATH}"
+          /usr/bin/security set-key-partition-list \
+            -S apple-tool:,apple:,codesign: \
+            -s -k "${KEYCHAIN_PASSWORD}" \
+            "${KEYCHAIN_PATH}" >/dev/null
+
+          # Developer ID G2 intermediate, in case the .p12 omitted the chain.
+          INTERMEDIATE="${RUNNER_TEMP}/DeveloperIDG2CA.cer"
+          if /usr/bin/curl -fsSL "https://www.apple.com/certificateauthority/DeveloperIDG2CA.cer" -o "${INTERMEDIATE}"; then
+            /usr/bin/security import "${INTERMEDIATE}" -k "${KEYCHAIN_PATH}" -T /usr/bin/codesign || true
+          fi
+
+          echo "KEYCHAIN_PATH=${KEYCHAIN_PATH}" >> "$GITHUB_ENV"
+          /usr/bin/security find-identity -v -p codesigning "${KEYCHAIN_PATH}"
+          /bin/rm -f "${CERT_PATH}" "${INTERMEDIATE}"
+
+      - name: Build Release app
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          BUILD_NUMBER: ${{ steps.version.outputs.build }}
+          BUILD_ONLY: "1"
+          REQUIRE_UNIVERSAL: "1"
+          SIGN_TIMESTAMP: ${{ steps.creds.outputs.signing == 'true' && '1' || '0' }}
+          SIGNING_IDENTITY: ${{ secrets.MACOS_CERTIFICATE_IDENTITY }}
+        run: |
+          set -euo pipefail
+          # Empty optional identity lets build.sh auto-detect Developer ID.
+          if [ -z "${SIGNING_IDENTITY}" ]; then
+            unset SIGNING_IDENTITY
+          fi
+          ./build.sh
+
+      - name: Package DMG
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          chmod +x Tools/package_dmg.sh
+          Tools/package_dmg.sh \
+            "build/DNA Engine.app" \
+            "dist/DNA-Engine-${RELEASE_VERSION}.dmg" \
+            "DNA Engine ${RELEASE_VERSION}"
+
+      - name: Sign DMG
+        if: steps.creds.outputs.signing == 'true'
+        env:
+          SIGNING_IDENTITY: ${{ secrets.MACOS_CERTIFICATE_IDENTITY }}
+        run: |
+          set -euo pipefail
+          DMG="dist/DNA-Engine-${RELEASE_VERSION}.dmg"
+          if [ -z "${SIGNING_IDENTITY}" ]; then
+            SIGNING_IDENTITY="$(/usr/bin/security find-identity -v -p codesigning | /usr/bin/awk -F'"' '/Developer ID Application:/ { print $2; exit }')"
+          fi
+          [ -n "${SIGNING_IDENTITY}" ] || { echo "::error::No Developer ID Application identity found"; exit 1; }
+          /usr/bin/codesign --force --sign "${SIGNING_IDENTITY}" --timestamp "${DMG}"
+          /usr/bin/codesign --verify --verbose=4 "${DMG}"
+
+      - name: Notarize and staple DMG
+        if: steps.creds.outputs.notary == 'true'
+        env:
+          APP_STORE_CONNECT_API_KEY_P8_BASE64: ${{ secrets.APP_STORE_CONNECT_API_KEY_P8_BASE64 }}
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+        run: |
+          set -euo pipefail
+          DMG="dist/DNA-Engine-${RELEASE_VERSION}.dmg"
+          AUTH_ARGS=()
+          cleanup_auth() {
+            /bin/rm -f "${RUNNER_TEMP}/AuthKey.p8"
+          }
+          trap cleanup_auth EXIT
+
+          if [ "${NOTARY_METHOD}" = "api-key" ]; then
+            KEY_PATH="${RUNNER_TEMP}/AuthKey.p8"
+            case "${APP_STORE_CONNECT_API_KEY_P8_BASE64}" in
+              -----BEGIN*)
+                printf '%s\n' "${APP_STORE_CONNECT_API_KEY_P8_BASE64}" > "${KEY_PATH}"
+                ;;
+              *)
+                printf '%s' "${APP_STORE_CONNECT_API_KEY_P8_BASE64}" | /usr/bin/base64 --decode > "${KEY_PATH}"
+                ;;
+            esac
+            /bin/chmod 600 "${KEY_PATH}"
+            AUTH_ARGS=(--key "${KEY_PATH}" --key-id "${APP_STORE_CONNECT_API_KEY_ID}" --issuer "${APP_STORE_CONNECT_ISSUER_ID}")
+          else
+            AUTH_ARGS=(--apple-id "${APPLE_ID}" --team-id "${APPLE_TEAM_ID}" --password "${APPLE_APP_SPECIFIC_PASSWORD}")
+          fi
+
+          /usr/bin/xcrun notarytool submit "${DMG}" "${AUTH_ARGS[@]}" --wait
+          /usr/bin/xcrun stapler staple "${DMG}"
+          /usr/bin/xcrun stapler validate "${DMG}"
+
+      - name: SHA-256 checksum
+        run: |
+          set -euo pipefail
+          DMG="dist/DNA-Engine-${RELEASE_VERSION}.dmg"
+          (
+            cd dist
+            /usr/bin/shasum -a 256 "$(basename "${DMG}")" > "$(basename "${DMG}").sha256"
+          )
+          /usr/bin/shasum -a 256 -c "dist/DNA-Engine-${RELEASE_VERSION}.dmg.sha256"
+          cat "dist/DNA-Engine-${RELEASE_VERSION}.dmg.sha256"
+
+      - name: Write release notes
+        run: |
+          set -euo pipefail
+          NOTES="dist/RELEASE_NOTES.md"
+          STATUS_FILE="${RUNNER_TEMP}/release-status.txt"
+          python3 Tools/write_release_notes.py \
+            --version "${RELEASE_VERSION}" \
+            --output "${NOTES}" \
+            --checksum-file "dist/DNA-Engine-${RELEASE_VERSION}.dmg.sha256" \
+            --signing "${SIGNING_AVAILABLE}" \
+            --notary "${NOTARY_AVAILABLE}" \
+            --status-file "${STATUS_FILE}"
+          {
+            echo "STATUS=$(/usr/bin/tr -d '[:space:]' < "${STATUS_FILE}")"
+            echo "NOTES_PATH=${NOTES}"
+          } >> "$GITHUB_ENV"
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TITLE="DNA Engine ${RELEASE_VERSION}"
+          if [ "${STATUS}" = "unsigned" ]; then
+            TITLE="${TITLE} (unsigned)"
+          elif [ "${STATUS}" = "signed-not-notarized" ]; then
+            TITLE="${TITLE} (signed, not notarized)"
+          fi
+
+          DMG="dist/DNA-Engine-${RELEASE_VERSION}.dmg"
+          SUM="dist/DNA-Engine-${RELEASE_VERSION}.dmg.sha256"
+
+          if gh release view "${RELEASE_TAG}" --repo "${GITHUB_REPOSITORY}" >/dev/null 2>&1; then
+            gh release edit "${RELEASE_TAG}" \
+              --repo "${GITHUB_REPOSITORY}" \
+              --title "${TITLE}" \
+              --notes-file "${NOTES_PATH}"
+            gh release upload "${RELEASE_TAG}" "${DMG}" "${SUM}" \
+              --repo "${GITHUB_REPOSITORY}" \
+              --clobber
+          else
+            gh release create "${RELEASE_TAG}" \
+              --repo "${GITHUB_REPOSITORY}" \
+              --title "${TITLE}" \
+              --notes-file "${NOTES_PATH}" \
+              --target "${GITHUB_SHA}" \
+              "${DMG}" "${SUM}"
+          fi
+
+      - name: Forget signing keychain
+        if: always() && steps.creds.outputs.signing == 'true'
+        run: |
+          set -euo pipefail
+          if [ -n "${KEYCHAIN_PATH:-}" ] && [ -f "${KEYCHAIN_PATH}" ]; then
+            /usr/bin/security delete-keychain "${KEYCHAIN_PATH}" || true
+          fi
+          /bin/rm -f "${RUNNER_TEMP}/DeveloperID.p12" "${RUNNER_TEMP}/AuthKey.p8" "${RUNNER_TEMP}/DeveloperIDG2CA.cer"

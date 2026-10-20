@@ -11,6 +11,11 @@ set -euo pipefail
 #
 # VERSION and BUILD_NUMBER are read from the checked-in files of the same
 # names. Environment values may override them for an intentional candidate.
+#
+# Optional signing knobs (used by .github/workflows/release.yml):
+#   SIGNING_IDENTITY   — exact codesign identity; otherwise auto-detected
+#   SIGN_TIMESTAMP=1   — embed Apple's secure timestamp (required to notarize)
+#   REQUIRE_UNIVERSAL=1 — fail if an x86_64 slice cannot be produced
 
 umask 077
 
@@ -35,6 +40,7 @@ BUILD_ONLY="${BUILD_ONLY:-0}"
 INSTALL="${INSTALL:-0}"
 REQUIRE_UNIVERSAL="${REQUIRE_UNIVERSAL:-0}"
 SIGNING_IDENTITY="${SIGNING_IDENTITY:-}"
+SIGN_TIMESTAMP="${SIGN_TIMESTAMP:-0}"
 BACKUP_ROOT="${DNA_ENGINE_BACKUP_ROOT:-${HOME}/Library/Application Support/DNAEngine Release Backups}"
 
 fail() {
@@ -67,6 +73,7 @@ validate_inputs() {
   case "$BUILD_ONLY" in 0|1) ;; *) fail "BUILD_ONLY must be 0 or 1" ;; esac
   case "$INSTALL" in 0|1) ;; *) fail "INSTALL must be 0 or 1" ;; esac
   case "$REQUIRE_UNIVERSAL" in 0|1) ;; *) fail "REQUIRE_UNIVERSAL must be 0 or 1" ;; esac
+  case "$SIGN_TIMESTAMP" in 0|1) ;; *) fail "SIGN_TIMESTAMP must be 0 or 1" ;; esac
 
   if [ "$BUILD_ONLY" = "$INSTALL" ]; then
     fail "choose exactly one mode: BUILD_ONLY=1 or INSTALL=1"
@@ -364,8 +371,17 @@ fi
 /bin/chmod 755 "$APP_STAGE/Contents/MacOS/$BIN_NAME"
 
 resolve_signing_identity
-note "Sign with hardened runtime ($SIGNING_MODE: $RESOLVED_SIGNING_IDENTITY)"
-/usr/bin/codesign --force --sign "$RESOLVED_SIGNING_IDENTITY" --options runtime --timestamp=none "$APP_STAGE"
+# Ad-hoc signatures cannot use Apple's timestamp service. A secure timestamp is
+# required for Developer ID notarization; CI sets SIGN_TIMESTAMP=1 for that path.
+if [ "$RESOLVED_SIGNING_IDENTITY" != "-" ] && [ "$SIGN_TIMESTAMP" = "1" ]; then
+  CODESIGN_TIMESTAMP=(--timestamp)
+  TIMESTAMP_MODE="Apple secure timestamp"
+else
+  CODESIGN_TIMESTAMP=(--timestamp=none)
+  TIMESTAMP_MODE="no timestamp"
+fi
+note "Sign with hardened runtime ($SIGNING_MODE: $RESOLVED_SIGNING_IDENTITY; $TIMESTAMP_MODE)"
+/usr/bin/codesign --force --sign "$RESOLVED_SIGNING_IDENTITY" --options runtime "${CODESIGN_TIMESTAMP[@]}" "$APP_STAGE"
 
 note "Strict artifact verification"
 verify_app "$APP_STAGE"

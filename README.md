@@ -12,6 +12,7 @@ There is **no cloud, no account, no telemetry, no analytics, no updater, and no 
 
 ## Table of contents
 
+- [Download](#download)
 - [Who it's for](#who-its-for)
 - [Screenshots](#screenshots)
 - [Feature tour](#feature-tour)
@@ -26,6 +27,45 @@ There is **no cloud, no account, no telemetry, no analytics, no updater, and no 
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgements & data sources](#acknowledgements--data-sources)
+
+---
+
+## Download
+
+**[Get the latest release](https://github.com/ShadowfetchStudio/dna-engine/releases/latest)** for macOS 14 (Sonoma) or later — a `.dmg` plus a `.sha256` checksum. Open the disk image and drag **DNA Engine** to Applications.
+
+The download is the same offline workbench as a source build: **no cloud, no account, no telemetry, no updater, and no network code.** Your genome never leaves your Mac.
+
+Verify the image if you want:
+
+```bash
+shasum -a 256 -c DNA-Engine-<version>.dmg.sha256
+```
+
+**First launch**
+
+- **Signed and notarized** releases (when the maintainer has configured Apple signing) should open with a normal double-click after install.
+- **Unsigned** releases — or any build Gatekeeper still quarantines — need an explicit open: right-click **DNA Engine.app** → **Open**. If you trust the file you downloaded:
+
+  ```bash
+  xattr -dr com.apple.quarantine "/Applications/DNA Engine.app"
+  ```
+
+Prefer to compile it yourself? See [Build from source](#build-from-source).
+
+### Getting your raw DNA file
+
+You need the **raw genotype export** (a text/CSV/TSV file, often inside a zip), not a PDF ancestry report or a screenshot. DNA Engine reads that file entirely on your Mac — it does not upload it. Vendor menus move; if a label has changed, use that company's current "download raw DNA / raw data" help page.
+
+**AncestryDNA** — Sign in, open **DNA Settings** for the test you own or manage, and choose **Download DNA data**. Confirm the warning and verify your account (password or email code). Ancestry emails a one-time link (often within a few hours, up to 24 hours; the link typically expires after about a week). The download is a `.zip` containing a `.txt` file.
+
+**23andMe** — Sign in and open raw data from **Resources → Browse Raw Genotyping Data → Download**, from [you.23andme.com/tools/data/](https://you.23andme.com/tools/data/), or from **Account Settings → 23andMe Data**. Request the raw genotyping download and confirm the profile date of birth. 23andMe emails when the file is ready (often about a week). The `.zip` name usually starts with `genome`.
+
+**MyHeritage** — On a computer, **DNA → Manage DNA kits → ⋯ → Download kit**, and choose the standard **DNA data file** (not a CRAM/WGS dump). Only the kit manager can download, and only after results are published. Kits that were *uploaded* to MyHeritage from another company must be downloaded from the original provider. MyHeritage emails a link (typically valid about 24 hours); open it, re-enter your password, and save the file.
+
+You can import the zip or the extracted text, and also VCF or gzip. After import, read **Genome Quality Control** and the receipt before treating any interpretation as meaningful.
+
+Official help (vendor pages, not DNA Engine): [Ancestry](https://help.ancestry.com/hc/en-us/articles/53933317283603-Downloading-DNA-Data) · [23andMe](https://customercare.23andme.com/hc/en-us/articles/212196868-Accessing-Your-Raw-Genetic-Data) · [MyHeritage](https://www.myheritage.com/help/en/articles/12851869-how-do-i-download-my-raw-dna-data-file-or-cram-file-from-myheritage)
 
 ---
 
@@ -182,7 +222,7 @@ python3 Tools/build_reference_panel.py     # repackage the ancestry panel (see s
 
 ## Usage
 
-1. **Get your raw data.** Download the raw-DNA export from your testing service, or obtain a VCF.
+1. **Get your raw data.** Download the raw-DNA export from your testing service ([AncestryDNA, 23andMe, MyHeritage](#getting-your-raw-dna-file)), or obtain a VCF.
 2. **Import.** *File → Import into Encrypted Workspace…* (`⌘I`) to save it in the encrypted vault, or *Open Memory-Only Private Session…* (`⇧⌘I`) to analyze without persisting.
 3. **Check the receipt.** Open **Genome Quality Control** and read the import receipt and QC first — it tells you how trustworthy the file is *before* any interpretation.
 4. **Explore.** Overview, Ancestry & PCA, Pharmacogenomics, the domain panels, Polygenic Panels, Whole-Genome Karyotype (ROH), Kinship & Compare, and the Honesty surface.
