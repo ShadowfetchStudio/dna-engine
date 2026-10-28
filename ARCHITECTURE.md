@@ -199,7 +199,7 @@ Both modes:
 
 Build-only mode never touches `/Applications`. Install mode is separately explicit, refuses a running app, stages and verifies the candidate, creates a verified local backup, atomically swaps the bundle, verifies again, and rolls back on failure.
 
-There is no GitHub, remote release, notarization upload, App Store workflow, website deployment, cloud publication, or sales step.
+`build.sh` itself performs no upload, notarization, or remote publication — it builds, verifies, and (opt-in) installs locally only. Optional GitHub Actions packaging (`.github/workflows/release.yml`) can attach a DMG to a GitHub Release when a version tag is pushed; that job is CI packaging only and does not add network, telemetry, or update code to the app.
 
 ## 10. Test harnesses
 
