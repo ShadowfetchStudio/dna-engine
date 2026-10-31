@@ -276,6 +276,10 @@ Contributions are welcome — especially new curated markers, additional panels,
 
 Please open an issue to discuss substantial changes first. See `ARCHITECTURE.md` for internals.
 
+Project page: [shadowfetchlinux.org/open-source/projects/dna-engine](https://www.shadowfetchlinux.org/open-source/projects/dna-engine)
+
+Like this project? You can [buy me a coffee](https://www.buymeacoffee.com/shadowfetcu).
+
 ---
 
 ## License
