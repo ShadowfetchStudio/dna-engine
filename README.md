@@ -32,26 +32,19 @@ There is **no cloud, no account, no telemetry, no analytics, no updater, and no 
 
 ## Download
 
-**[Get the latest release](https://github.com/ShadowfetchStudio/dna-engine/releases/latest)** for macOS 14 (Sonoma) or later — a `.dmg` plus a `.sha256` checksum. Open the disk image and drag **DNA Engine** to Applications.
+**No packaged GitHub release is published yet.** To use DNA Engine on macOS 14
+(Sonoma) or later, follow [Build from source](#build-from-source). The repository
+includes a release-packaging workflow, but a workflow is not an available installer.
 
-The download is the same offline workbench as a source build: **no cloud, no account, no telemetry, no updater, and no network code.** Your genome never leaves your Mac.
+Check the [releases page](https://github.com/ShadowfetchStudio/dna-engine/releases)
+for future published builds. A downloadable release should include its actual `.dmg`
+and checksum file; its notes must state whether that artifact is signed and notarized.
+Do not assume signing or notarization from the presence of the packaging workflow.
 
-Verify the image if you want:
-
-```bash
-shasum -a 256 -c DNA-Engine-<version>.dmg.sha256
-```
-
-**First launch**
-
-- **Signed and notarized** releases (when the maintainer has configured Apple signing) should open with a normal double-click after install.
-- **Unsigned** releases — or any build Gatekeeper still quarantines — need an explicit open: right-click **DNA Engine.app** → **Open**. If you trust the file you downloaded:
-
-  ```bash
-  xattr -dr com.apple.quarantine "/Applications/DNA Engine.app"
-  ```
-
-Prefer to compile it yourself? See [Build from source](#build-from-source).
+The source build is the offline workbench described below: **no cloud, no account,
+no telemetry, no updater, and no network code.** Your genome stays on your Mac.
+Local build and installation instructions, including signing limitations, are in
+[Build from source](#build-from-source).
 
 ### Getting your raw DNA file
 
